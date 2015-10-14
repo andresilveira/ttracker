@@ -1,0 +1,24 @@
+%h1= item.name
+
+%legend
+  Market Entries
+  %form{action: routes.get_entries_item_path(item.id), method: :post}
+    %input{type: :hidden, name: :_method, value: 'PUT'}
+    %input.btn.btn-default{type: :submit, value: 'Get Market Entries'}
+#market_entries
+  %table.table.table-stripped
+    %thead
+      %tr
+        %th Price
+        %th Amount
+        %th Vendor
+        %th Collected at
+    %tbody
+      - item.market_entries.each do |entry|
+        %tr.market_entry
+          %td= entry.price
+          %td= entry.amount
+          %td= entry.vendor
+          %td= entry.created_at
+
+= link_to_back routes.items_path

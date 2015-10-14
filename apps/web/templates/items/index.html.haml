@@ -1,0 +1,22 @@
+%h1 Listing Items
+
+#items
+  - if items.any?
+    %table.table.table-hover.table-stripped
+      %thead
+        %tr
+          %th Name
+          %th
+      %tbody
+        - items.each do |item|
+          %tr.item
+            %td= link_to item.name, routes.item_path(item.id)
+            %td
+              %form{action: routes.item_path(item.id), method: :post}
+                %input{type: :hidden, name: :_method, value: 'DELETE'}
+                %input.delete.btn.btn-danger.btn-xs{type: :submit, value: 'Delete'}
+  - else
+    %p.placeholder There are no items yet.
+
+  = link_to routes.new_item_path, class: 'btn btn-primary' do
+    - span(class: 'glyphicon glyphicon-plus') + 'New Item'

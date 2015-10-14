@@ -1,0 +1,17 @@
+%h1 Add Item
+
+- unless params.valid?
+  .errors
+    %h3 There was a problem with your submission
+    %ul
+      - params.errors.each do |error|
+        %li= "#{error.attribute_name} is required"
+
+= form_for :item, routes.items_path do
+  - div class: 'form-group' do
+    - label       :name
+    - text_field  :name, class: 'form-control', placeholder: 'Item Name'
+  - div do
+    - submit 'Create Item', class: 'btn btn-primary'
+%br
+= link_to_back routes.items_path
