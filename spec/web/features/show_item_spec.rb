@@ -7,8 +7,8 @@ describe 'Show item' do
     ItemRepository.create(Item.new(name: 'Large Jellopy'))
   end
 
-  it "shows an item and its market entries" do
-    visit "/items"
+  it 'shows an item and its market entries' do
+    visit '/items'
 
     click_on 'Large Jellopy'
 

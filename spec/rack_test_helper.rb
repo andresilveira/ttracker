@@ -6,6 +6,6 @@ class MiniTest::Spec
   include Rack::Test::Methods
 
   def app
-   Lotus::Container.new
+    Lotus::Container.new
   end
 end

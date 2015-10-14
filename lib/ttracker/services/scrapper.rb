@@ -31,7 +31,7 @@ module Services
 
       # map the results into MarketEntry objects
       item_entries.map do |entry|
-        entry = entry.children.select{|child| child.name == 'td'}
+        entry = entry.children.select { |child| child.name == 'td' }
         {
           name:   entry[0].text.strip.downcase,
           cards:  entry[1].text.strip.downcase,

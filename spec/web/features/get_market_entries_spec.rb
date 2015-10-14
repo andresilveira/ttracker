@@ -10,7 +10,7 @@ describe 'Items' do
   it 'can get entries from the market' do
     visit "items/#{@item.id}"
 
-    click_on "Get Market Entries"
+    click_on 'Get Market Entries'
 
     within '#market_entries' do
       assert page.has_content?('123123123'), 'expected to find the entry price'

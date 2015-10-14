@@ -10,9 +10,7 @@ module Api::Controllers::MarketEntries
 
     def call(params)
       @market_entries = @scrapper.scrap(params[:query])
-      if market_entries.empty?
-        status 404, 'Item not found'
-      end
+      status 404, 'Item not found' if market_entries.empty?
     end
   end
 end

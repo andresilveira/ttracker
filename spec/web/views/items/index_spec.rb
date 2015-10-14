@@ -7,7 +7,7 @@ describe Web::Views::Items::Index do
   let(:view)      { Web::Views::Items::Index.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it "exposes #items" do
+  it 'exposes #items' do
     view.items.must_equal exposures.fetch(:items)
   end
 

@@ -10,23 +10,23 @@ describe Web::Controllers::Items::Destroy do
   let(:action) { Web::Controllers::Items::Destroy.new }
 
   describe 'with valid parameters' do
-    let(:params){ Hash[id: @item.id] }
+    let(:params) { Hash[id: @item.id] }
 
-    it "redirects the user" do
+    it 'redirects the user' do
       response = action.call(params)
       response[0].must_equal 302
     end
 
-    it "deletes the given item" do
-      response = action.call(params)
+    it 'deletes the given item' do
+      action.call(params)
       ItemRepository.find(@item.id).must_be_nil
     end
   end
 
   describe 'with invalid parameters' do
-    let(:params){ Hash[id: ''] }
+    let(:params) { Hash[id: ''] }
 
-    it "responds with 404" do
+    it 'responds with 404' do
       response = action.call(params)
       response[0].must_equal 404
     end

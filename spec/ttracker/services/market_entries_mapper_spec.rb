@@ -5,17 +5,17 @@ describe Services::MarketEntriesMapper do
     ItemRepository.clear
     @item = ItemRepository.create(Item.new(name: 'jellopy'))
     @data_source = [
-      { name: 'jellopy', price: 123123, amount: 10, vendor: 'someone' },
-      { name: 'large jellopy', price: 123123, amount: 10, vendor: 'someone' }
+      { name: 'jellopy', price: 123_123, amount: 10, vendor: 'someone' },
+      { name: 'large jellopy', price: 123_123, amount: 10, vendor: 'someone' }
     ]
   end
 
   it 'must have a data_source' do
-    proc { Services::MarketEntriesMapper.new(item: @item) }.must_raise ArgumentError
+    proc { Services::MarketEntriesMapper.new }.must_raise ArgumentError
   end
 
   it 'must create market_entries for the given item' do
-    mapper = Services::MarketEntriesMapper.new(
+    Services::MarketEntriesMapper.new(
       data_source:  @data_source
     ).update_market_entries(@item)
 

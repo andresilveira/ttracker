@@ -1,6 +1,6 @@
 require 'lotus/model'
 require 'lotus/mailer'
-Dir["#{ __dir__ }/ttracker/**/*.rb"].each { |file| require_relative file }
+Dir["#{__dir__}/ttracker/**/*.rb"].each { |file| require_relative file }
 
 Lotus::Model.configure do
   ##
@@ -22,7 +22,7 @@ Lotus::Model.configure do
   # Migrations
   #
   migrations 'db/migrations'
-  schema     'db/schema.sql'
+  schema 'db/schema.sql'
 
   ##
   # Database mapping
@@ -44,16 +44,16 @@ Lotus::Model.configure do
     #   attribute :name, String
     # end
     collection :items do
-      entity      Item
-      repository  ItemRepository
+      entity Item
+      repository ItemRepository
 
       attribute :id,    Integer
       attribute :name,  String
     end
 
     collection :market_entries do
-      entity          MarketEntry
-      repository      MarketEntryRepository
+      entity MarketEntry
+      repository MarketEntryRepository
 
       attribute :id,          Integer
       attribute :item_id,     Integer
@@ -67,12 +67,12 @@ Lotus::Model.configure do
 end.load!
 
 Lotus::Mailer.configure do
-  root "#{ __dir__ }/ttracker/mailers"
+  root "#{__dir__}/ttracker/mailers"
 
   # See http://lotusrb.org/guides/mailers/delivery
   delivery do
     development :test
-    test        :test
+    test :test
     # production :stmp, address: ENV['SMTP_PORT'], port: 1025
   end
 end.load!

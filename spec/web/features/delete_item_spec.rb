@@ -19,4 +19,3 @@ describe 'Items' do
     page.assert_no_text 'deleted item'
   end
 end
-

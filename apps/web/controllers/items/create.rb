@@ -11,11 +11,10 @@ module Web::Controllers::Items
     end
 
     def call(params)
-      if params.valid?
-        @item = ItemRepository.create(Item.new(params[:item]))
+      return unless params.valid?
 
-        redirect_to routes.items_path
-      end
+      @item = ItemRepository.create(Item.new(params[:item]))
+      redirect_to routes.items_path
     end
   end
 end

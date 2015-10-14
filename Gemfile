@@ -16,12 +16,13 @@ group :test do
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'capybara'
-  gem "rack-test"
+  gem 'rack-test'
 end
 
 group :development do
   gem 'guard'
   gem 'guard-minitest'
+  gem 'rubocop', require: false
 end
 
 group :development, :test do

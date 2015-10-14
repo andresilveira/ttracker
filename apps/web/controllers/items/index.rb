@@ -4,7 +4,7 @@ module Web::Controllers::Items
 
     expose :items
 
-    def call(params)
+    def call(_params)
       @items = ItemRepository.all
     end
   end

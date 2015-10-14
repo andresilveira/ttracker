@@ -15,10 +15,9 @@ module Api
       # Relative load paths where this application will recursively load the code.
       # When you add new directories, remember to add them here.
       #
-      load_paths << [
-        'controllers',
-        'views'
-      ]
+      load_paths << %w(
+        controllers
+        views)
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
       # Defaults to true.
@@ -144,7 +143,7 @@ module Api
       #   * https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options
       #   * https://www.owasp.org/index.php/Clickjacking
       #
-      security.x_frame_options "DENY"
+      security.x_frame_options 'DENY'
 
       # Content-Security-Policy (CSP) is a HTTP header supported by modern browsers.
       # It determines trusted sources of execution for dynamic contents
@@ -209,7 +208,7 @@ module Api
       handle_exceptions false
 
       # Serve static assets during development
-      serve_assets      true
+      serve_assets true
     end
 
     ##
@@ -220,7 +219,7 @@ module Api
       handle_exceptions false
 
       # Serve static assets during development
-      serve_assets      true
+      serve_assets true
     end
 
     ##

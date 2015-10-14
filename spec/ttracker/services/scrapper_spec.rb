@@ -10,7 +10,6 @@ describe Services::Scrapper do
   end
 
   describe '#scrap' do
-
     before { skip 'test_remote env is false' unless ENV['TEST_REMOTE'] }
 
     let(:valid_credentials) { { username: ENV['T_USERNAME'], password: ENV['T_PASSWORD'] } }
@@ -20,16 +19,16 @@ describe Services::Scrapper do
     end
 
     describe 'when the item exists' do
-      let(:known_entry) { Hash[name: 'jellopy', cards:'', price: 123123123, amount: 10, title: 'ttracker'] }
+      let(:known_entry) { Hash[name: 'jellopy', cards: '', price: 123_123_123, amount: 10, title: 'ttracker'] }
       let(:results) { Services::Scrapper.new(valid_credentials).scrap(known_entry[:name]) }
-      let(:fetched_known_entry) { results.select{|r| r[:title] == 'ttracker'}.first }
+      let(:fetched_known_entry) { results.find { |r| r[:title] == 'ttracker' } }
 
       it 'the results should include a jellopy' do
         fetched_known_entry[:name].must_equal 'jellopy'
       end
 
       it 'the results should include the price of 123123123' do
-        fetched_known_entry[:price].must_equal 123123123
+        fetched_known_entry[:price].must_equal 123_123_123
       end
 
       it 'the results should include the amount of 10' do

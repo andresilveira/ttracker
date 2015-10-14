@@ -8,7 +8,5 @@ class Item
     @market_entries || []
   end
 
-  def market_entries= entries
-    @market_entries= entries
-  end
+  attr_writer :market_entries
 end

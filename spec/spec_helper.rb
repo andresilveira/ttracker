@@ -7,4 +7,4 @@ require 'minitest/reporters'
 
 Lotus::Application.preload!
 
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new({color: true})]
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]

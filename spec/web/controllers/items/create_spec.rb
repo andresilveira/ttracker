@@ -23,7 +23,7 @@ describe Web::Controllers::Items::Create do
   end
 
   describe 'with an empty name' do
-    let(:params) { Hash[item: { }] }
+    let(:params) { Hash[item: {}] }
     it 're-renders the items#new view' do
       response = action.call(params)
       response[0].must_equal 200
