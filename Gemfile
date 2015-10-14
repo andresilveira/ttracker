@@ -17,6 +17,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'capybara'
   gem 'rack-test'
+  gem 'simplecov', require: false
 end
 
 group :development do

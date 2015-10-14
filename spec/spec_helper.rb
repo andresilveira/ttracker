@@ -1,4 +1,6 @@
-# Require this file for unit tests
+require 'simplecov'
+SimpleCov.start
+
 ENV['LOTUS_ENV'] ||= 'test'
 
 require_relative '../config/environment'
