@@ -18,7 +18,7 @@ group :test do
   gem 'capybara'
   gem 'rack-test'
   gem 'simplecov', require: false
-  gem "codeclimate-test-reporter", require: false
+  gem 'codeclimate-test-reporter', require: false
 end
 
 group :development do
