@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Services::Scrapper do
+describe Services::Scrapper, vcr: true do
   it 'must have a username' do
     proc { Services::Scrapper.new(password: 'pass') }.must_raise ArgumentError
   end
@@ -10,8 +10,6 @@ describe Services::Scrapper do
   end
 
   describe '#scrap' do
-    before { skip 'test_remote env is false' unless ENV['TEST_REMOTE'] }
-
     let(:valid_credentials) { { username: ENV['T_USERNAME'], password: ENV['T_PASSWORD'] } }
 
     it 'should receive an item name' do
