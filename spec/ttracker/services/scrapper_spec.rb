@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Services::Scrapper, :vcr do
+describe Services::Scrapper, vcr: true do
   it 'must have a username' do
     proc { Services::Scrapper.new(password: 'pass') }.must_raise ArgumentError
   end
