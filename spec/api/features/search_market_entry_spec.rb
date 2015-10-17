@@ -1,7 +1,6 @@
 require 'rack_test_helper'
 
-describe 'Search Item' do
-  before { skip('test_remote env is false') unless ENV['TEST_REMOTE'] }
+describe 'Search Item', :vcr do
   it 'should return a json with jellopys' do
     post '/api/market_entries/search', query: 'jellopy'
 

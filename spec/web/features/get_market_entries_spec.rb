@@ -1,14 +1,13 @@
 require 'features_helper'
 
-describe 'Items' do
+describe 'Items', :vcr do
   before do
     ItemRepository.clear
     @item = ItemRepository.create(Item.new(name: 'jellopy'))
-    skip('test_remote env is false') unless ENV['TEST_REMOTE']
   end
 
   it 'can get entries from the market' do
-    visit "items/#{@item.id}"
+    visit "/items/#{@item.id}"
 
     click_on 'Get Market Entries'
 
