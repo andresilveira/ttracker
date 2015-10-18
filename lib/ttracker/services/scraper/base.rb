@@ -1,33 +1,28 @@
 require 'mechanize'
 
-module Services
-  class Scrapper
+module Services::Scraper
+  class Base
     attr_reader :username, :password, :item_name
 
     WHOSELL_URL = ENV['T_URL']
 
-    def initialize(username:, password:)
+    def initialize(username:, password:, authenticator: nil)
       @username = username
       @password = password
+      @authenticator = authenticator || Authenticator.new(
+        username: @username, password: @password, page: Mechanize.new.get(WHOSELL_URL)
+      )
+      @page = @authenticator.authenticate!
     end
 
     def scrap(item_name)
-      # initializes agent and get the page
-      page = Mechanize.new.get(WHOSELL_URL)
-
-      # authenticate
-      page = page.form_with(id: 'validation') do |login|
-        login.field_with(name: 'auth').value = username
-        login.field_with(name: 'password').value = password
-      end.submit
-
       # query for the item name
-      page = page.form_with(id: 'validation') do |whosell|
+      @page = @page.form_with(id: 'validation') do |whosell|
         whosell.field_with(name: 'name').value = item_name
       end.submit
 
       # scrapps the page for results
-      item_entries = page.search('#content_wrap > .table_data tr:not(.table_row_subtop)').search('tr:not(.table_row_top)')
+      item_entries = @page.search('#content_wrap > .table_data tr:not(.table_row_subtop)').search('tr:not(.table_row_top)')
 
       # map the results into MarketEntry objects
       item_entries.map do |entry|

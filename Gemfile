@@ -17,6 +17,7 @@ group :test do
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'capybara'
+  gem 'minitest-capybara'
   gem 'rack-test'
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', require: false
