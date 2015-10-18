@@ -1,4 +1,4 @@
-require 'features_helper'
+require 'spec_helper'
 
 describe Services::Scraper::Authenticator, vcr: { record: :new_episodes } do
   let(:subject) { Services::Scraper::Authenticator }

@@ -6,21 +6,18 @@ module Services::Scraper
 
     WHOSELL_URL = ENV['T_URL']
 
-    def initialize(username:, password:, authenticator: nil)
+    def initialize(username:, password:, authenticator: nil, searcher: nil)
       @username = username
       @password = password
       @authenticator = authenticator || Authenticator.new(
         username: @username, password: @password, page: Mechanize.new.get(WHOSELL_URL)
       )
       @page = @authenticator.authenticate!
+      @searcher = searcher || Searcher.new(page: @page)
     end
 
     def scrap(item_name)
-      # query for the item name
-      @page = @page.form_with(id: 'validation') do |whosell|
-        whosell.field_with(name: 'name').value = item_name
-      end.submit
-
+      @page = @searcher.search_item(item_name)
       # scrapps the page for results
       item_entries = @page.search('#content_wrap > .table_data tr:not(.table_row_subtop)').search('tr:not(.table_row_top)')
 
