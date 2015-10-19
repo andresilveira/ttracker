@@ -20,34 +20,22 @@ describe Services::Scraper::Base, vcr: { record: :new_episodes } do
       proc { @authenticated_scraper.scrap }.must_raise ArgumentError
     end
 
-    describe 'when the item exists' do
-      before do
-        known_entry = Hash[name: 'jellopy', cards: '', price: 123_123_123, amount: 10, title: 'ttracker']
-        results = @authenticated_scraper.scrap(known_entry[:name])
-        @fetched_known_entry = results.find { |r| r[:title] == 'ttracker' }
-      end
+    it 'should call search_item on its searcher' do
+      item_name = 'item_name'
+      mock_searcher = Minitest::Mock.new.expect(:search_item, true, [item_name])
+      @authenticated_scraper.searcher = mock_searcher
 
-      it 'the results should include a jellopy' do
-        @fetched_known_entry[:name].must_equal 'jellopy'
+      @authenticated_scraper.reader.stub :read, true do
+        @authenticated_scraper.scrap(item_name)
       end
-
-      it 'the results should include the price of 123123123' do
-        @fetched_known_entry[:price].must_equal 123_123_123
-      end
-
-      it 'the results should include the amount of 10' do
-        @fetched_known_entry[:amount].must_equal 10
-      end
-
-      it 'the results should include the vendor PintusHumunculus' do
-        @fetched_known_entry[:vendor].must_equal 'PintusHumunculus'
-      end
+      mock_searcher.verify
     end
 
-    describe 'when the item doesnt exist' do
-      it 'returns an empty array' do
-        @authenticated_scraper.scrap('unexisting_weird_item').must_be_empty
-      end
+    it 'should call read on its reader' do
+      mock_reader = Minitest::Mock.new.expect(:read, true, [Mechanize::Page])
+      @authenticated_scraper.reader = mock_reader
+      @authenticated_scraper.scrap('item_name')
+      mock_reader.verify
     end
   end
 end
