@@ -5,7 +5,7 @@ module Services::Scraper
         entry = entry.children.select { |child| child.name == 'td' }
         {
           name:   entry[0].text.strip.downcase,
-          cards:  '', #entry[1].text.strip.downcase,
+          cards:  '', # entry[1].text.strip.downcase,
           price:  entry[2].text.strip.delete('.').to_i,
           amount: entry[3].text.strip.delete('.').to_i,
           title:  entry[4].text.strip,
@@ -16,9 +16,9 @@ module Services::Scraper
 
     private
 
-    def scrap_entries page
+    def scrap_entries(page)
       entries = page.search('#content_wrap > .table_data')
-      raise UnknownPageException, "Couldn't find entries table" if entries.empty?
+      fail UnknownPageException, "Couldn't find entries table" if entries.empty?
 
       entries.search('tr:not(.table_row_subtop)').search('tr:not(.table_row_top)')
     end

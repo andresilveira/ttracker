@@ -2,8 +2,8 @@ require 'mechanize'
 
 module Services::Scraper
   class Authenticator
-    def initialize username:, password:, page:
-      raise ArgumentError if username.to_s.blank? || password.to_s.blank? || page.nil?
+    def initialize(username:, password:, page:)
+      fail ArgumentError if username.to_s.blank? || password.to_s.blank? || page.nil?
 
       @username = username
       @password = password
@@ -22,16 +22,16 @@ module Services::Scraper
     private
 
     def assert_authenticated
-      raise InvalidUserException if @page.uri.path.include? 'login'
+      fail InvalidUserException if @page.uri.path.include? 'login'
       @page
     end
 
     def authentication_form_id
-     'validation'
+      'validation'
     end
 
     def username_field_name
-     'auth'
+      'auth'
     end
 
     def password_field_name

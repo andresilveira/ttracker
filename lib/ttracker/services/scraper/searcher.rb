@@ -1,14 +1,14 @@
 module Services::Scraper
   class Searcher
-    def initialize page: :page_not_set
-      raise UnknownPage unless page.uri.path == URI.parse(ENV['T_URL']).path
+    def initialize(page: :page_not_set)
+      fail UnknownPage unless page.uri.path == URI.parse(ENV['T_URL']).path
 
       @page = page
     end
 
     def search_item(item_name)
       item_name = item_name.to_s
-      raise ArgumentError if item_name.blank?
+      fail ArgumentError if item_name.blank?
 
       @page = @page.form_with(id: search_form_id) do |whosell|
         whosell.field_with(name: item_field_name).value = item_name

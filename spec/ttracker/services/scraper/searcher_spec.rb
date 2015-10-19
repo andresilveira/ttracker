@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Services::Scraper::Searcher, vcr: { record: :new_episodes} do
+describe Services::Scraper::Searcher, vcr: { record: :new_episodes } do
   let(:subject) { Services::Scraper::Searcher }
 
   it 'needs a knwon page' do

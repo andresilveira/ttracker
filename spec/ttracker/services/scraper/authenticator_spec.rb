@@ -18,12 +18,12 @@ describe Services::Scraper::Authenticator, vcr: { record: :new_episodes } do
   describe '.authenticate!' do
     before do
       page_to_authenticate = Mechanize.new.get ENV['T_URL']
-      @valid_user = Hash[ username: ENV['T_USERNAME'],
-                          password: ENV['T_PASSWORD'],
-                          page: page_to_authenticate ]
-      @invalid_user = Hash[ username: 'lololololo',
-                          password: 'lolololololo',
-                          page: page_to_authenticate ]
+      @valid_user = Hash[username: ENV['T_USERNAME'],
+                         password: ENV['T_PASSWORD'],
+                         page: page_to_authenticate]
+      @invalid_user = Hash[username: 'lololololo',
+                           password: 'lolololololo',
+                           page: page_to_authenticate]
     end
 
     it 'should return a page authenticated when successful' do

@@ -58,18 +58,18 @@ describe Services::Scraper::ResultsReader do
         page = Nokogiri::HTML body
         results = Services::Scraper::ResultsReader.new.read(page)
         results.must_equal [
-          Hash[ name: 'jellopy',
-                cards: '',
-                price: 480,
-                amount: 1420,
-                title: 'ELU SQI ETC',
-                vendor: 'chinitaa'],
-          Hash[ name: 'large jellopy',
-                cards: '',
-                price: 3_000,
-                amount: 8,
-                title: 'ELU IRON SQI ETC',
-                vendor: 'Chancesmith']
+          Hash[name: 'jellopy',
+               cards: '',
+               price: 480,
+               amount: 1420,
+               title: 'ELU SQI ETC',
+               vendor: 'chinitaa'],
+          Hash[name: 'large jellopy',
+               cards: '',
+               price: 3_000,
+               amount: 8,
+               title: 'ELU IRON SQI ETC',
+               vendor: 'Chancesmith']
         ]
       end
     end
