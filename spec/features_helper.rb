@@ -9,5 +9,4 @@ Capybara.app = Lotus::Container.new
 
 class MiniTest::Spec
   include Capybara::DSL
-  include Capybara::Expectations
 end
