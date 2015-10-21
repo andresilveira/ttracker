@@ -5,7 +5,7 @@ module Web::Controllers::Items
     expose :item
 
     def initialize(mapper = nil, data_source = nil)
-      @data_source = data_source || Services::Scrapper.new(
+      @data_source = data_source || Services::Scraper::Base.new(
         username: ENV['T_USERNAME'],
         password: ENV['T_PASSWORD']
       )

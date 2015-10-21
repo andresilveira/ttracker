@@ -23,7 +23,7 @@ module Services
     private
 
     def prepare_data_source(item)
-      return unless @data_source.is_a?(Services::Scrapper)
+      return unless @data_source.is_a?(Services::Scraper::Base)
 
       @data_source = @data_source.scrap(item.name)
     end

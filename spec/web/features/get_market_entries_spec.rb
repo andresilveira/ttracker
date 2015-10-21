@@ -1,6 +1,6 @@
 require 'features_helper'
 
-describe 'Items', :vcr do
+describe 'Items', vcr: { record: :new_episodes } do
   before do
     ItemRepository.clear
     @item = ItemRepository.create(Item.new(name: 'jellopy'))

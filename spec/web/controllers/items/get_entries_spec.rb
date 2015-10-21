@@ -1,7 +1,7 @@
 require 'spec_helper'
 require_relative '../../../../apps/web/controllers/items/get_entries'
 
-describe Web::Controllers::Items::GetEntries do
+describe Web::Controllers::Items::GetEntries, vcr: { record: :new_episodes } do
   before do
     ItemRepository.clear
     @item = ItemRepository.create(Item.new(name: 'jellopy'))
