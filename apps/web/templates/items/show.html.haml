@@ -3,6 +3,7 @@
 %legend
   Market Entries
   %form{action: routes.get_entries_item_path(item.id), method: :post}
+    %input{name: '_csrf_token', type: 'hidden', value: csrf_token}
     %input{type: :hidden, name: :_method, value: 'PUT'}
     %input.btn.btn-default{type: :submit, value: 'Get Market Entries'}
 #market_entries

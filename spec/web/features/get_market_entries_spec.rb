@@ -11,10 +11,6 @@ describe 'Items', :vcr do
 
     click_on 'Get Market Entries'
 
-    within '#market_entries' do
-      assert page.has_content?('123123123'), 'expected to find the entry price'
-      assert page.has_content?('PintusHumunculus'), 'expected to find the entry vendor'
-      assert page.has_content?('10'), 'expected to find the entry amount'
-    end
+    assert page.has_content?("We're fetching data from the market for you. Please reload the page in a moment"), 'expected to give feedback to the user'
   end
 end

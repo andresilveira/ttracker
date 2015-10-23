@@ -13,6 +13,9 @@ gem 'pg'
 
 gem 'mechanize'
 
+gem 'sidekiq'
+gem 'font-awesome-sass'
+
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'

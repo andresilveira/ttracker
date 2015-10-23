@@ -1,0 +1,6 @@
+- [:error, :success, :info].each do |type|
+  - if flash[type]
+    .alert.alert-dismissible{class: "alert-#{type.to_s}", role: 'alert'}
+      %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
+        %span{ aria: { hidden: 'true' } }×
+      = flash[type]

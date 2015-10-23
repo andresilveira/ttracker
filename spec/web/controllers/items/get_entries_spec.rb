@@ -7,9 +7,13 @@ describe Web::Controllers::Items::GetEntries do
     @item = ItemRepository.create(Item.new(name: 'jellopy'))
   end
 
-  let(:mapper) { MiniTest::Mock.new.expect(:update_market_entries, @item, [@item]) }
+  let(:worker) do
+    MiniTest::Mock.new.expect(:perform_async, true, [
+      ENV['T_USERNAME'], ENV['T_PASSWORD'], @item.id
+    ])
+  end
 
-  let(:action) { Web::Controllers::Items::GetEntries.new(mapper) }
+  let(:action) { Web::Controllers::Items::GetEntries.new(worker) }
   let(:params) { Hash[id: @item.id] }
 
   it 'redirects to show item' do
@@ -25,6 +29,6 @@ describe Web::Controllers::Items::GetEntries do
 
   it 'should call map on the mapper' do
     action.call(params)
-    mapper.verify
+    worker.verify
   end
 end

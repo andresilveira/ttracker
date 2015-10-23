@@ -4,17 +4,14 @@ module Web::Controllers::Items
 
     expose :item
 
-    def initialize(mapper = nil, data_source = nil)
-      @data_source = data_source || Services::Scrapper.new(
-        username: ENV['T_USERNAME'],
-        password: ENV['T_PASSWORD']
-      )
-      @mapper = mapper || Services::MarketEntriesMapper.new(data_source: @data_source)
+    def initialize(worker = Workers::EntriesGetter)
+      @worker = worker
     end
 
     def call(params)
-      @item = @mapper.update_market_entries(ItemRepository.find(params[:id]))
-
+      @worker.perform_async ENV['T_USERNAME'], ENV['T_PASSWORD'], params[:id]
+      @item = ItemRepository.find(params[:id])
+      flash[:info] = "<i class='fa fa-spin fa-cog' aria-hidden='true'></i> We're fetching data from the market for you. Please reload the page in a moment"
       redirect_to routes.item_path(@item.id)
     end
   end
