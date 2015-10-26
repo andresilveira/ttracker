@@ -9,3 +9,5 @@ Lotus::Container.configure do
   mount Api::Application, at: '/api'
   mount Web::Application, at: '/'
 end
+
+Lotus::Application.preload_applications!
