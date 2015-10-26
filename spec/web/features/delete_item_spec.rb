@@ -6,8 +6,6 @@ describe 'Items' do
     ItemRepository.create(Item.new(name: 'deleted item'))
   end
 
-  after { ItemRepository.clear }
-
   it 'can delete an item' do
     visit '/items'
 
