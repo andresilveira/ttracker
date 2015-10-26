@@ -6,6 +6,7 @@ module Services
 
     def update_market_entries(item)
       prepare_data_source(item)
+      return if @data_source.empty?
 
       exact_matches_for_item(item).each do |entry|
         MarketEntryRepository.create(MarketEntry.new(

@@ -20,9 +20,14 @@ module Services::Scraper
       self.reader = reader || ResultsReader.new
     end
 
-    def scrap(item_name)
-      @page = searcher.search_item(item_name)
-      reader.read @page
+    def scrap(item_or_items_names)
+      items_names = Array(item_or_items_names)
+      items_names.flat_map do |item_name|
+        @page = searcher.search_item(item_name)
+        results = reader.read @page
+        yield results if block_given?
+        results
+      end
     end
   end
 end
