@@ -13,6 +13,7 @@
             %td= link_to item.name, routes.item_path(item.id)
             %td
               %form{action: routes.item_path(item.id), method: :post}
+                %input{name: '_csrf_token', type: 'hidden', value: csrf_token}
                 %input{type: :hidden, name: :_method, value: 'DELETE'}
                 %input.delete.btn.btn-danger.btn-xs{type: :submit, value: 'Delete'}
   - else
