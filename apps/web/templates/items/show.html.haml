@@ -1,11 +1,14 @@
-%h1= item.name
-
-%legend
-  Market Entries
-  %form{action: routes.get_entries_item_path(item.id), method: :post}
+%h1
+  = item.name
+  %form.pull-right{action: routes.get_entries_item_path(item.id), method: :post}
     %input{name: '_csrf_token', type: 'hidden', value: csrf_token}
     %input{type: :hidden, name: :_method, value: 'PUT'}
-    %input.btn.btn-default{type: :submit, value: 'Get Market Entries'}
+    %label.btn.btn-primary{for: 'getMarket'}
+      %i.fa.fa-refresh
+      Get Market
+    %input#getMarket.hide{type: :submit, value: 'Get Market'}
+
+%legend Market Entries
 #market_entries
   %table.table.table-stripped
     %thead

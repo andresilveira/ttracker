@@ -9,7 +9,7 @@ describe 'Items', vcr: { record: :new_episodes } do
   it 'can get entries from the market' do
     visit "/items/#{@item.id}"
 
-    click_on 'Get Market Entries'
+    click_on 'Get Market'
 
     assert page.has_content?("We're fetching data from the market for you. Please reload the page in a moment"), 'expected to give feedback to the user'
   end
