@@ -1,44 +1,46 @@
 require 'mechanize'
 
-module Services::Scraper
-  class Authenticator
-    def initialize(username:, password:, page:)
-      fail ArgumentError if username.to_s.blank? || password.to_s.blank? || page.nil?
+module Services
+  module Scraper
+    class Authenticator
+      def initialize(username:, password:, page:)
+        fail ArgumentError if username.to_s.blank? || password.to_s.blank? || page.nil?
 
-      @username = username
-      @password = password
-      @page = page
-    end
+        @username = username
+        @password = password
+        @page = page
+      end
 
-    def authenticate!
-      @page = @page.form_with(id: authentication_form_id) do |form|
-        form.field_with(name: username_field_name).value = @username
-        form.field_with(name: password_field_name).value = @password
-      end.submit
+      def authenticate!
+        @page = @page.form_with(id: authentication_form_id) do |form|
+          form.field_with(name: username_field_name).value = @username
+          form.field_with(name: password_field_name).value = @password
+        end.submit
 
-      assert_authenticated
-    end
+        assert_authenticated
+      end
 
-    private
+      private
 
-    def assert_authenticated
-      fail InvalidUserException if @page.uri.path.include? 'login'
-      @page
-    end
+      def assert_authenticated
+        fail InvalidUserException if @page.uri.path.include? 'login'
+        @page
+      end
 
-    def authentication_form_id
-      'validation'
-    end
+      def authentication_form_id
+        'validation'
+      end
 
-    def username_field_name
-      'auth'
-    end
+      def username_field_name
+        'auth'
+      end
 
-    def password_field_name
-      'password'
-    end
+      def password_field_name
+        'password'
+      end
 
-    class InvalidUserException < Exception
+      class InvalidUserException < Exception
+      end
     end
   end
 end
