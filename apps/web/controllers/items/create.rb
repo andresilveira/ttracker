@@ -14,7 +14,7 @@ module Web::Controllers::Items
       return unless params.valid?
 
       @item = ItemRepository.create(Item.new(params[:item]))
-      redirect_to routes.items_path
+      redirect_to routes.item_path(@item.id)
     end
   end
 end
