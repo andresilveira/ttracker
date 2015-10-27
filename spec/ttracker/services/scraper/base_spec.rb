@@ -37,5 +37,13 @@ describe Services::Scraper::Base, vcr: { record: :new_episodes } do
       @authenticated_scraper.scrap('item_name')
       mock_reader.verify
     end
+
+    describe 'when receiving a list with n items' do
+      it 'must call a block for each item' do
+        block_called = 0
+        @authenticated_scraper.scrap(%w(item_name item_name)) { block_called += 1 }
+        block_called.must_equal 2
+      end
+    end
   end
 end

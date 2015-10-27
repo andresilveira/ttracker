@@ -1,2 +1,2 @@
 web: bundle exec puma -C config/puma.rb
-worker: bundle exec sidekiq -r ./lib/ttracker/workers/entries_getter.rb -c 5
+worker: bundle exec sidekiq -r ./config/workers.rb -c 5
