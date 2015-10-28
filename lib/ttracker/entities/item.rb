@@ -1,6 +1,6 @@
 class Item
   class Name
-    def initialize raw_name
+    def initialize(raw_name)
       @raw_name = raw_name.to_s.downcase
     end
 

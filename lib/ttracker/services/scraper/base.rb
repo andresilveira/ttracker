@@ -7,7 +7,7 @@ module Services
   module Scraper
     class Base
       attr_accessor :username, :password, :item_name, :authenticator,
-        :searcher, :reader
+                    :searcher, :reader
 
       WHOSELL_URL = ENV['T_URL']
 
