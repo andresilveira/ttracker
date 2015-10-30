@@ -1,3 +1,5 @@
+ENV['LOTUS_ENV'] ||= 'test'
+
 require 'rake'
 require 'rake/testtask'
 require_relative './config/environment'
