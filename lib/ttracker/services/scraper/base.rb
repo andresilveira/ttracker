@@ -5,6 +5,10 @@ require_relative './results_reader'
 
 module Services
   module Scraper
+    # The entry point for scraping the market website. It's composite of an Authenticator,
+    # a Searcher and a Reader.
+    # Given the credentials and the item name, it authenticates in the market website, performs
+    # a search and parse the results
     class Base
       attr_accessor :username, :password, :item_name, :authenticator,
                     :searcher, :reader

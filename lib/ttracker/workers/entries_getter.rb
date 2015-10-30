@@ -1,6 +1,7 @@
 require 'sidekiq'
 
 module Workers
+  # A background worker that get items from the market site
   class EntriesGetter
     include Sidekiq::Worker
 

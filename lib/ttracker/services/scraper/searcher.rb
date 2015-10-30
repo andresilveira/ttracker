@@ -1,5 +1,6 @@
 module Services
   module Scraper
+    # Class responsible for performing a search for a given item in the market website
     class Searcher
       def initialize(page: :page_not_set)
         fail UnknownPage unless page.uri.path == URI.parse(ENV['T_URL']).path

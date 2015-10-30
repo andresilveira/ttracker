@@ -1,5 +1,6 @@
 module Services
   module Scraper
+    # Class responsible for parsing and structuring the results of a search in the market website
     class ResultsReader
       def read(page)
         scrap_entries(page).map do |entry|

@@ -1,3 +1,4 @@
+# The bride betwen the entity MarketEntry and its persistence layer.
 class MarketEntryRepository
   include Lotus::Repository
 

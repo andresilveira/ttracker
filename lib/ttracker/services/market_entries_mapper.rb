@@ -1,4 +1,6 @@
 module Services
+  # Responsible for mapping the results of the market website scraper into
+  # known Entities: MarketEntry and Item
   class MarketEntriesMapper
     def initialize(data_source:)
       @data_source = data_source

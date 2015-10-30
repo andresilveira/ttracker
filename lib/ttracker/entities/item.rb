@@ -1,4 +1,7 @@
+# Represents an Item from the game
 class Item
+  # Represents the name of an Item. The goal of this class is to
+  # present its name as capitalized
   class Name
     def initialize(raw_name)
       @raw_name = raw_name.to_s.downcase

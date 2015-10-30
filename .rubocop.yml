@@ -5,3 +5,7 @@ Metrics/LineLength:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Style/Documentation:
+  Enabled: true
+  Exclude: ['spec/**/*', 'apps/**/*']

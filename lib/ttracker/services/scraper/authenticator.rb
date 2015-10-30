@@ -2,6 +2,7 @@ require 'mechanize'
 
 module Services
   module Scraper
+    # Class responsible to authenticate in the market website.
     class Authenticator
       def initialize(username:, password:, page:)
         fail ArgumentError if username.to_s.blank? || password.to_s.blank? || page.nil?

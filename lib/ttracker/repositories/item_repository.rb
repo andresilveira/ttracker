@@ -1,3 +1,4 @@
+# The bridge between the entity Item and its persistence layer.
 class ItemRepository
   include Lotus::Repository
 
