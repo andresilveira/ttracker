@@ -4,12 +4,12 @@ module Api::Controllers::MarketEntries
 
     expose :market_entries
 
-    def initialize(scrapper = Services::Scrapper.new(username: ENV['T_USERNAME'], password: ENV['T_PASSWORD']))
-      @scrapper = scrapper
+    def initialize(scraper = Services::Scraper::Base.new(username: ENV['T_USERNAME'], password: ENV['T_PASSWORD']))
+      @scraper = scraper
     end
 
     def call(params)
-      @market_entries = @scrapper.scrap(params[:query])
+      @market_entries = @scraper.scrap(params[:query])
       status 404, 'Item not found' if market_entries.empty?
     end
   end

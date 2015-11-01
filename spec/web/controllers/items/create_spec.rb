@@ -18,7 +18,7 @@ describe Web::Controllers::Items::Create do
       response = action.call(params)
 
       response[0].must_equal 302
-      response[1]['Location'].must_equal '/items'
+      response[1]['Location'].must_equal "/items/#{action.item.id}"
     end
   end
 

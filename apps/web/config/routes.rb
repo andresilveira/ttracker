@@ -6,4 +6,4 @@ end
 # Configure your routes here
 # See: http://www.rubydoc.info/gems/lotus-router/#Usage
 
-get '/', to: 'items#index'
+get '/', to: 'items#index', as: :root

@@ -1,10 +1,14 @@
-%h1= item.name
-
-%legend
-  Market Entries
-  %form{action: routes.get_entries_item_path(item.id), method: :post}
+%h1
+  = item.name
+  %form.pull-right{action: routes.get_entries_item_path(item.id), method: :post}
+    %input{name: '_csrf_token', type: 'hidden', value: csrf_token}
     %input{type: :hidden, name: :_method, value: 'PUT'}
-    %input.btn.btn-default{type: :submit, value: 'Get Market Entries'}
+    %label.btn.btn-primary{for: 'getMarket'}
+      %i.fa.fa-refresh
+      Get Market
+    %input#getMarket.hide{type: :submit, value: 'Get Market'}
+
+%legend Market Entries
 #market_entries
   %table.table.table-stripped
     %thead
@@ -13,6 +17,7 @@
         %th Amount
         %th Vendor
         %th Collected at
+        %th
     %tbody
       - item.market_entries.each do |entry|
         %tr.market_entry
@@ -20,5 +25,12 @@
           %td= entry.amount
           %td= entry.vendor
           %td= entry.created_at
+          %td
+            %form.delete{action: "/api/market_entries/#{entry.id}", method: :post, data: { confirm: true, confirm_message: 'Do you want to delete this Item?' }}
+              %input{name: '_csrf_token', type: 'hidden', value: csrf_token}
+              %label.delete.btn.btn-danger.btn-xs{for: "delete-entry-#{entry.id}"}
+                %i.fa.fa-times
+              %input{type: :hidden, name: :_method, value: 'DELETE'}
+              %input.hide{id: "delete-entry-#{entry.id}", type: :submit, value: 'Delete'}
 
 = link_to_back routes.items_path

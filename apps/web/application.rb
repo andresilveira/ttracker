@@ -19,7 +19,8 @@ module Web
       #
       load_paths << %w(
         controllers
-        views)
+        views
+      )
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
       # Defaults to true.
@@ -58,7 +59,7 @@ module Web
       #
       # Options: :domain   - The domain (String - nil by default, not required)
       #          :path     - Restrict cookies to a relative URI (String - nil by default)
-      #          :max_age  - Cookies expiration expressed in seconds (Integer - nil by default)
+      #          :max_age  - Cookies expiration expressed in econds (Integer - nil by default)
       #          :secure   - Restrict cookies to secure connections
       #                      (Boolean - Automatically set on true if currenlty using a secure connection)
       #                      See #scheme and #ssl?
@@ -74,7 +75,7 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      # sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
+      sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
 
       # Configure Rack middleware for this application
       #
@@ -178,7 +179,7 @@ module Web
       #  * http://content-security-policy.com/
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/Using_Content_Security_Policy
       #
-      security.content_security_policy "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self'; font-src 'self';"
+      security.content_security_policy "default-src 'none'; script-src 'self' code.jquery.com maxcdn.bootstrapcdn.com; connect-src 'self'; img-src 'self'; style-src 'self' maxcdn.bootstrapcdn.com; font-src 'self' maxcdn.bootstrapcdn.com;"
 
       ##
       # FRAMEWORKS
@@ -191,6 +192,8 @@ module Web
       controller.prepare do
         # include MyAuthentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
+
+        expose :flash
       end
 
       # Configure the code that will yield each time Web::View is included

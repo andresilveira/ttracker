@@ -13,6 +13,9 @@ gem 'pg'
 
 gem 'mechanize'
 
+gem 'sidekiq'
+gem 'font-awesome-sass'
+
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
@@ -20,6 +23,9 @@ group :test do
   gem 'rack-test'
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', require: false
+  gem 'vcr'
+  gem 'webmock'
+  gem 'minitest-vcr'
 end
 
 group :development do

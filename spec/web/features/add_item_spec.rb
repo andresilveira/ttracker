@@ -13,7 +13,6 @@ describe 'Items' do
       click_button 'Create'
     end
 
-    current_path.must_equal('/items')
     assert page.has_content?('Large Jellopy')
   end
 end

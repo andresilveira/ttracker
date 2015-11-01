@@ -1,21 +1,16 @@
 require 'features_helper'
 
-describe 'Items' do
+describe 'Items', vcr: { record: :new_episodes } do
   before do
     ItemRepository.clear
     @item = ItemRepository.create(Item.new(name: 'jellopy'))
-    skip('test_remote env is false') unless ENV['TEST_REMOTE']
   end
 
   it 'can get entries from the market' do
-    visit "items/#{@item.id}"
+    visit "/items/#{@item.id}"
 
-    click_on 'Get Market Entries'
+    click_on 'Get Market'
 
-    within '#market_entries' do
-      assert page.has_content?('123123123'), 'expected to find the entry price'
-      assert page.has_content?('PintusHumunculus'), 'expected to find the entry vendor'
-      assert page.has_content?('10'), 'expected to find the entry amount'
-    end
+    assert page.has_content?("We're fetching data from the market for you. Please reload the page in a moment"), 'expected to give feedback to the user'
   end
 end
