@@ -21,4 +21,11 @@ class MarketEntryRepository
   def self.recently_created(limit: 20)
     query.desc(:created_at).limit(limit)
   end
+
+  # Persists a market entry if doesn't violates the unique constraint from the database
+  # @param limit [MarketEntry] the market entry to be persisted
+  # @return [MarketEntry] the new or previously persisted MarketEntry
+  def self.find_or_create(entry)
+    query.where(price: entry.price, vendor: entry.vendor, amount: entry.amount, item_id: entry.item_id).first || create(entry)
+  end
 end
