@@ -63,6 +63,16 @@ Lotus::Model.configure do
       attribute :created_at,  DateTime
       attribute :updated_at,  DateTime
     end
+
+    collection :price_alert_criterias do
+      entity PriceAlertCriteria
+      repository PriceAlertCriteriaRepository
+
+      attribute :id,         Integer
+      attribute :item_id,    Integer
+      attribute :threshold,  Integer
+      attribute :operation,     String
+    end
   end
 end.load!
 
