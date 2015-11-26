@@ -1,3 +1,5 @@
+resources :price_alerts, only: [:index]
+
 resources :items do
   member do
     put '/get_entries'
