@@ -1,0 +1,27 @@
+%h1 Listing Price Alerts
+
+#price_alerts
+  - if price_alerts.any?
+    %table.table.table-hover.table-stripped
+      %thead
+        %tr
+          %th Name
+          %th Threshold
+          %th Operation
+          %th
+      %tbody
+        - price_alerts.each do |price_alert|
+          %tr.price_alert
+            %td= link_to price_alert.item_name, routes.item_path(price_alert.id)
+            %td= price_alert.threshold
+            %td= price_alert.operation
+            %td
+              %form{action: '#', method: :post, data: { confirm: true, confirm_message: 'Do you want to delete this Price Alert?' }}
+                %input{name: '_csrf_token', type: 'hidden', value: csrf_token}
+                %input{type: :hidden, name: :_method, value: 'DELETE'}
+                %input.delete.btn.btn-danger.btn-xs{type: :submit, value: 'Delete'}
+  - else
+    %p.placeholder There are no price alerts yet.
+
+  = link_to '#', class: 'btn btn-primary' do
+    - i(class: 'fa fa-plus') + 'New Price Alert'   
