@@ -1,4 +1,4 @@
-resources :price_alerts, only: [:index]
+resources :price_alerts, only: [:index, :new]
 
 resources :items do
   member do

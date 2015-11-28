@@ -23,5 +23,5 @@
   - else
     %p.placeholder There are no price alerts yet.
 
-  = link_to '#', class: 'btn btn-primary' do
+  = link_to routes.new_price_alert_path, class: 'btn btn-primary' do
     - i(class: 'fa fa-plus') + 'New Price Alert'   

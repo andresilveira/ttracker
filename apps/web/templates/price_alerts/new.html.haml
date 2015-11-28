@@ -1,0 +1,29 @@
+%h1 Add Price Alert
+
+- unless params.valid?
+  .errors
+    %h3 There was a problem with your submission
+    %ul
+      - params.errors.each do |error|
+        %li= "#{error.attribute_name} is required"
+
+= form_for :price_alert, '#' do
+  - div class: 'form-group' do
+    - div class: 'row-fluid' do
+      - div class: 'col-md-7 col-xs-12' do
+        - label  'Item', for: :item_id
+        - select :item_id, items, class: 'form-control'
+
+      - div class: 'col-md-2 col-xs-12' do
+        - label  'Operation', for: :operation
+        - select :operation, operations, class: 'form-control'
+      
+      - div class: 'col-md-3 col-xs-12' do
+        - label  'Price Limit', for: :threshold
+        - number_field :threshold, class: 'form-control'
+
+      - div class: 'clearfix'
+  - div do
+    - submit 'Create Price Alert', class: 'btn btn-primary'
+%br
+= link_to_back routes.price_alerts_path
