@@ -13,7 +13,6 @@ describe 'Items' do
       find('.delete').click
     end
 
-    current_path.must_equal('/items')
     page.assert_no_text 'deleted item'
   end
 end

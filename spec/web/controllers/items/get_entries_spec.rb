@@ -8,9 +8,11 @@ describe Web::Controllers::Items::GetEntries, vcr: { record: :new_episodes } do
   end
 
   let(:worker) do
-    MiniTest::Mock.new.expect(:perform_async, true, [
-      ENV['T_USERNAME'], ENV['T_PASSWORD'], @item.id
-    ])
+    MiniTest::Mock.new.expect(
+      :perform_async,
+      true,
+      [ENV['T_USERNAME'], ENV['T_PASSWORD'], @item.id]
+    )
   end
 
   let(:action) { Web::Controllers::Items::GetEntries.new(worker) }
