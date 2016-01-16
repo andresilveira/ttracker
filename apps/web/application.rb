@@ -1,3 +1,4 @@
+require 'lotus/assets'
 require 'lotus/helpers'
 
 module Web
@@ -120,16 +121,17 @@ module Web
       #
 
       # Specify sources for assets
-      # The directory `public/` is added by default
+      # The directory `assets/` is added by default
       #
-      # assets << [
-      #   'vendor/javascripts'
-      # ]
+      assets do
+        javascript_compressor :builtin
+        stylesheet_compressor :builtin
 
-      # Enabling serving assets
-      # Defaults to false
-      #
-      serve_assets true
+        sources << [
+          'assets',
+          # 'vendor/assets'
+        ]
+      end
 
       ##
       # SECURITY
@@ -203,6 +205,7 @@ module Web
       view.prepare do
         include Lotus::Helpers
         include Web::Views::Helpers
+        include Web::Assets::Helpers
       end
     end
 
@@ -212,9 +215,6 @@ module Web
     configure :development do
       # Don't handle exceptions, render the stack trace
       handle_exceptions false
-
-      # Serve static assets during development
-      serve_assets true
     end
 
     ##
@@ -223,18 +223,21 @@ module Web
     configure :test do
       # Don't handle exceptions, render the stack trace
       handle_exceptions false
-
-      # Serve static assets during development
-      serve_assets true
     end
 
     ##
     # PRODUCTION
     #
     configure :production do
-      # scheme 'https'
-      # host   'example.org'
-      # port   443
+      assets do
+        compile false
+        digest  true
+
+        # CDN Mode (optional)
+        # scheme 'https'
+        # host   '123.cloudfront.net'
+        # port   443
+      end
     end
   end
 end
