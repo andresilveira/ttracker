@@ -4,7 +4,7 @@ module Web::Controllers::PriceAlerts
 
     expose :price_alerts
 
-    def call(params)
+    def call(_)
       @price_alerts = PriceAlertCriteriaRepository.all
     end
   end

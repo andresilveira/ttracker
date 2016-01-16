@@ -4,7 +4,7 @@ module Web::Controllers::PriceAlerts
 
     expose :items, :operations
 
-    def call(params)
+    def call(_)
       @items = prepare_items_options
       @operations = prepare_operations_options
     end

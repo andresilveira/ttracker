@@ -14,7 +14,7 @@ describe PriceAlertCriteria do
   describe '#achieved_threshold?' do
     describe 'when the operation is greater than or equal to' do
       describe 'and the threshold is 100' do
-        let(:criteria) { criteria = PriceAlertCriteria.new(operation: '>=', threshold: 100) }
+        let(:criteria) { PriceAlertCriteria.new(operation: '>=', threshold: 100) }
         it 'should return true for 200' do
           criteria.achieved_threshold?(200).must_equal true
         end
@@ -31,7 +31,7 @@ describe PriceAlertCriteria do
 
     describe 'when the operation is less than or equal to' do
       describe 'and the threshold is 100' do
-        let(:criteria) { criteria = PriceAlertCriteria.new(operation: '<=', threshold: 100) }
+        let(:criteria) { PriceAlertCriteria.new(operation: '<=', threshold: 100) }
         it 'should return true for 99' do
           criteria.achieved_threshold?(99).must_equal true
         end

@@ -7,7 +7,7 @@ describe Web::Views::PriceAlerts::Index do
   let(:view)      { Web::Views::PriceAlerts::Index.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it "exposes #foo" do
+  it 'exposes #foo' do
     view.foo.must_equal exposures.fetch(:foo)
   end
 end

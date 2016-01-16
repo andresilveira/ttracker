@@ -71,7 +71,7 @@ Lotus::Model.configure do
       attribute :id,         Integer
       attribute :item_id,    Integer
       attribute :threshold,  Integer
-      attribute :operation,     String
+      attribute :operation,  String
     end
   end
 end.load!

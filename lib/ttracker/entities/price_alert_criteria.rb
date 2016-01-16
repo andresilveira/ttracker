@@ -1,9 +1,8 @@
 # Holds the criterias in which the price alerts are based
-
 class PriceAlertCriteria
   include Lotus::Entity
-  
-  ALLOWED_OPERATIONS = { '>=': 'greater than', '<=': 'smaller than' }
+
+  ALLOWED_OPERATIONS = { '>=': 'greater than', '<=': 'smaller than' }.freeze
 
   attributes :operation, :threshold, :item_id
   attr_accessor :item
